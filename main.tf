@@ -1,8 +1,8 @@
 # Configure the VMware vSphere Provider
 provider "vsphere" {
-  user           = "fill"
-  password       = "fill"
-  vsphere_server = "fill" 
+  user           = "administrator@pod4.cisco.demo"
+  password       = "C1scoUC$"
+  vsphere_server = "10.68.48.14" 
 
   # if you have a self-signed cert
   allow_unverified_ssl = true
@@ -11,15 +11,12 @@ provider "vsphere" {
 # Deploy 2 linux VMs
 module "example-server-linuxvm" {
   source        = "Terraform-VMWare-Modules/vm/vsphere"
-  version       = "X.X.X"
+  version       = "3.0.0"
   vmtemp        = "VM Template Name (Should Alrerady exist)"
   instances     = 2
-  vmname        = "example-server-linux"
+  vmname        = "terraform-vm-1"
   vmrp          = "esxi/Resources - or name of a resource pool"
-  network = {
-    "Name of the Port Group in vSphere" = ["10.13.113.2", "10.13.113.3"] # To use DHCP create Empty list ["",""]
-  }
-  vmgateway         = "10.13.113.1"
-  dc        = "Datacenter"
-  datastore = "Data Store name(use datastore_cluster for datastore cluster)"
+  dc        = "Pod4"
+  cluster = "HX-2"
+  datastore = "HX-Datastore3"
 }
