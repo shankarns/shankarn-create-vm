@@ -75,3 +75,8 @@ variable "linked_clone" {
   description = "Clone this virtual machine from a snapshot. Templates must have a single snapshot only in order to be eligible."
   default     = false
 }
+variable "vsphere_compute_cluster" {
+  type = string
+  description = "Vsphere compute cluster name"
+}
+
